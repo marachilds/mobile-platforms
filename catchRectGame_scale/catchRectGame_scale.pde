@@ -1,7 +1,6 @@
 float gX, gY;
 float rX, rY;
 float gScale, rScale;
-float gRot, rRot;
 float rectWidth, rectHeight;
 float dd = displayDensity;
 int score;
@@ -30,13 +29,7 @@ void draw(){
   text("rScale: " + rScale, 300, 150);
   fill(255, 0, 0);
   noStroke();
-  //pushMatrix();
-  //for (int i = 0; i < touches.length; i++) {
-  //  rRot = map(touches[i].x, 0, width, 0, TWO_PI);
-  //}
-  //rotate(gRot);
   rect(gX, gY, rectWidth * gScale, rectHeight * gScale);
-  //popMatrix();
   if (touches.length == 2) {
     rScale = map(touches[0].x + touches[1].x / 2, 0, width, 0.1, 10);
   }
@@ -44,14 +37,14 @@ void draw(){
     rX = mouseX;
     rY = mouseY;
   }
-  fill(0, 0, 255);
+  fill(0, 0, 255, 100);
   noStroke();
   rect(rX, rY, rectWidth * rScale, rectHeight * rScale);
   checkGoal();
 }
 
 void checkGoal(){
-  if(dist(rX, rY, gX, gY) < 10){
+  if((dist(rX, rY, gX, gY) < 10) && (abs(rScale - gScale) < 0.5)) {
     score++;
     createGoal();
   }
@@ -65,5 +58,4 @@ void createGoal(){
   gX = random(100, width-100);
   gY = random(100, height-100);
   gScale = random(1, 8);
-  //gRot = random(0, TWO_PI);
 }
