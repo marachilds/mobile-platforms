@@ -25,11 +25,17 @@ void draw(){
   background(255);
   rectMode(CENTER);
   fill(50);
-  text(score, 50, 50);
+  text(score + "gx, gy: " + gX + ", " + gY, 300, 50);
+  text("rx, ry: " + rX + ", " + rY, 300, 100);
   fill(255, 0, 0);
   noStroke();
-  rect(gX, gY, rectWidth, rectHeight);
-  //scale(gScale);
+  //pushMatrix();
+  //for (int i = 0; i < touches.length; i++) {
+  //  rRot = map(touches[i].x, 0, width, 0, TWO_PI);
+  //}
+  //rotate(gRot);
+  rect(gX, gY, rectWidth * gScale, rectHeight * gScale);
+  //popMatrix();
   rX = mouseX;
   rY = mouseY;
   fill(0, 0, 255);
@@ -39,9 +45,12 @@ void draw(){
 }
 
 void checkGoal(){
-  if(dist(rX, rY, gX, gY) < 20){
+  if(dist(rX, rY, gX, gY) < 10){
     score++;
     createGoal();
+  }
+  if(touches.length == 3){
+  score = 0;
   }
 }
 
@@ -49,7 +58,6 @@ void createGoal(){
   //Prevent goal from rendering off screen
   gX = random(100, width-100);
   gY = random(100, height-100);
-  //gScale = random(1, 100);
-  
-  //scale(gScale);
+  gScale = random(1, 8);
+  //gRot = random(0, TWO_PI);
 }
