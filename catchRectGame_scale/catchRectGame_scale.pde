@@ -27,6 +27,7 @@ void draw(){
   fill(50);
   text(score + "gx, gy: " + gX + ", " + gY, 300, 50);
   text("rx, ry: " + rX + ", " + rY, 300, 100);
+  text("rScale: " + rScale, 300, 150);
   fill(255, 0, 0);
   noStroke();
   //pushMatrix();
@@ -36,11 +37,16 @@ void draw(){
   //rotate(gRot);
   rect(gX, gY, rectWidth * gScale, rectHeight * gScale);
   //popMatrix();
-  rX = mouseX;
-  rY = mouseY;
+  if (touches.length == 2) {
+    rScale = map(touches[0].x + touches[1].x / 2, 0, width, 0.1, 10);
+  }
+  if(touches.length == 1){
+    rX = mouseX;
+    rY = mouseY;
+  }
   fill(0, 0, 255);
   noStroke();
-  rect(rX, rY, rectWidth, rectHeight);
+  rect(rX, rY, rectWidth * rScale, rectHeight * rScale);
   checkGoal();
 }
 
