@@ -24,9 +24,10 @@ void draw(){
   background(255);
   rectMode(CENTER);
   fill(50);
-  text(score + "gx, gy: " + gX + ", " + gY, 300, 50);
-  text("rx, ry: " + rX + ", " + rY, 300, 100);
-  text("rScale: " + rScale, 300, 150);
+  text("Score: " + score, 120, 50);
+  //text(score + "gx, gy: " + gX + ", " + gY, 300, 50);
+  //text("rx, ry: " + rX + ", " + rY, 300, 100);
+  //text("rScale: " + rScale, 300, 150);
   fill(255, 0, 0);
   noStroke();
   rect(gX, gY, rectWidth * gScale, rectHeight * gScale);
